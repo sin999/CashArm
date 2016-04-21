@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:composite="http://java.sun.com/jsf/composite">
+    <h:head>
+    <f:facet name="first">
+        <meta http-equiv="X-UA-Compatible" content="EmulateIE8" />
+        <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+        <title>CashARM login page</title>
+    </f:facet>
+
+    <link type="text/css" rel="stylesheet" href="#{request.contextPath}/css/default.css" />
+    <link type="text/css" rel="stylesheet" href="#{request.contextPath}/css/syntaxhighlighter/syntaxhighlighter.css" />
+
+    <style type="text/css">
+        #loginForm{
+            position:absolute;
+            /*width:300px;*/
+            /*height:200px;*/
+            z-index:15;
+            top:50%;
+            left:50%;
+            margin:-100px 0 0 -150px;
+            background: #dbfff1;
+        }
+        .ui-layout-north {
+            z-index:20 !important;
+            overflow:visible !important;;
+        }
+
+        .ui-layout-north .ui-layout-unit-content {
+            overflow:visible !important;
+        }
+        /*body {*/
+        /*font-size: 0% !important;*/
+
+        /*}*/
+        .outgo{
+            background-color: #fff1fa;
+            color: #bf223f;
+            background-image:none;
+        }
+
+        .income{
+            background-color: #edfffd;
+            color: #029f0f;
+            background-image:none;
+        }
+    </style>
+</h:head>
+    <body>
+        <h:form>
+            <p:commandButton value="Произвести платеж"
+                             id="ajax1"
+                             update="paymentDialog"
+                             type="button"
+                             onclick="PF('dlg2').show();" />
+            <p:dialog header="Платеж для абонента ( #{contractManager.contract.dogcode}) #{contractManager.contract.agentName}"
+                  widgetVar="dlg2"
+                  modal="true"
+                  dynamic="true"
+                  id="paymentDialog">
+                <p:ajax event="close"
+                        update="paymentDialog"
+                        listener="#{contractManager.closePayDialogAction}" />
+                <h:panelGrid columns="1" id="payment">
+                    <p:outputLabel value="Дата #{contractManager.payment.date}"/>
+                    <p:inputText id="amount"
+                                 required="true"
+                                 label="amount"
+                                 size="9"
+                                 requiredMessage="Необходимо указать вносимую сумму"
+                                 validatorMessage="Вносимая сумма длжна быть от 0 до 10000 рублей!"
+                                 value="#{contractManager.payment.amount}"
+                                 disabled="#{contractManager.payment.done}">
+                        <f:validateLongRange minimum="0"
+                                             maximum="10000" />
+                    </p:inputText>
+                    <p:message for="amount"
+                               errorStyle="color:red; display:block" />
+                    <p:watermark for="amount"
+                                 value="Сумма рубли,копейки" />
+                    <p:inputText id="paymentComment"
+                                 required="true"
+                                 label="Комментарий"
+                                 size="100"
+                                 requiredMessage="Комментарий не должен быть пустым"
+                                 value="#{contractManager.payment.comment}"
+                                 disabled="#{contractManager.payment.done}">
+                    </p:inputText>
+                    <p:message for="paymentComment"
+                               errorStyle="color:red; display:block" />
+                    <p:watermark for="paymentComment"
+                                 value="Комментарий до 50 симолов" />
+                    <p:commandButton value="Провести платеж"
+                                     update="payment"
+                                     actionListener="#{contractManager.payment.setDone}"
+                                     disabled="#{contractManager.payment.done}"/>
+                    <p:outputLabel value="Платеж проведен успешно!"
+                                   rendered="#{contractManager.payment.done}"
+                                   style="color:red;"/>
+                </h:panelGrid>
+            </p:dialog>
+        </h:form>
+    </body>
+</html>

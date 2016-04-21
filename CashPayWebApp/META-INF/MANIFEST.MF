@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+Class-Path: lib/activation.jar lib/axis.jar lib/commons-discovery.jar 
+ lib/commons-logging.jar lib/jaxrpc.jar lib/junit.jar lib/mail.jar lib
+ /OnymaApi.jar lib/saaj.jar lib/wsdl.jar
+

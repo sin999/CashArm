@@ -1,0 +1,29 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="CAWebAppNew">
+    <output-path>$PROJECT_DIR$/out/artifacts/CAWebAppNew</output-path>
+    <root id="archive" name="CAWebAppNew.war">
+      <element id="javaee-facet-resources" facet="CashPayWebApp/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="CashPayWebApp" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="OnymaApiLibs" />
+          <element id="library" level="project" name="Maven: org.primefaces:primefaces:5.0" />
+          <element id="library" level="project" name="Maven: javax.enterprise:cdi-api:1.1" />
+          <element id="library" level="project" name="Maven: org.jboss.weld.servlet:weld-servlet:2.2.4.Final" />
+          <element id="artifact" artifact-name="OnymaGate" />
+          <element id="artifact" artifact-name="OnymaCommon" />
+          <element id="library" level="project" name="Maven: org.hibernate:hibernate-validator:4.2.0.Final" />
+          <element id="library" level="project" name="Maven: org.apache.lucene:lucene-analyzers-common:4.9.0" />
+          <element id="library" level="project" name="Maven: org.apache.lucene:lucene-core:4.9.0" />
+          <element id="library" level="project" name="Maven: org.apache.lucene:lucene-queries:4.9.0" />
+          <element id="library" level="project" name="Maven: org.apache.lucene:lucene-queryparser:4.9.0" />
+          <element id="library" level="project" name="Maven: org.apache.lucene:lucene-sandbox:4.9.0" />
+        </element>
+      </element>
+      <element id="javaee-facet-resources" facet="CashPayWebApp/web/Web" />
+      <element id="javaee-facet-resources" facet="CashPayWebApp/web/Web" />
+    </root>
+  </artifact>
+</component>

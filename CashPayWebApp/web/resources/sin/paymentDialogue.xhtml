@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:p="http://primefaces.org/ui"
+        >
+
+<composite:interface>
+    <composite:attribute name="contract" type="java.lang.Object"/>
+</composite:interface>
+
+<composite:implementation>
+        <h:panelGrid columns="1" id="payment">
+            <p:outputLabel value="Дата #{contract.payment.txDate.time}">
+                <f:convertDateTime pattern="MM/dd/yyyy"/>
+            </p:outputLabel>
+            <p:inputText id="amount"
+                         required="true"
+                         label="amount"
+                         size="9"
+                         requiredMessage="Необходимо указать вносимую сумму"
+                         validatorMessage="Вносимая сумма длжна быть от 0 до 10000 рублей!"
+                         value="#{contract.payment.txAmount}"
+                         disabled="#{contract.payment.status == 'SUCCESSFUL'}">
+                <f:validateLongRange minimum="0"
+                                     maximum="10000" />
+            </p:inputText>
+            <p:message for="amount"
+                       errorStyle="color:red; display:block" />
+            <p:watermark for="amount"
+                         value="Сумма рубли,копейки" />
+            <p:inputText id="paymentComment"
+                         required="true"
+                         label="Комментарий"
+                         size="100"
+                         requiredMessage="Комментарий не должен быть пустым"
+                         value="#{contract.payment.comment}"
+                         disabled="#{contract.payment.status == 'SUCCESSFUL'}">
+            </p:inputText>
+            <p:message for="paymentComment"
+                       errorStyle="color:red; display:block" />
+            <p:watermark for="paymentComment"
+                         value="Комментарий до 50 симолов" />
+            <p:commandButton value="Провести платеж"
+                             update="payment"
+                             actionListener="#{contract.payment.process}"
+                             process="@parent"
+                             disabled="#{contract.payment.status == 'SUCCESSFUL'}"/>
+
+
+
+
+            <p:outputLabel value="dog code in payment is #{contract.payment.dog.dogcode}"/>
+
+            <p:outputLabel rendered="#{contract.payment.status == 'SUCCESSFUL'}"
+                           style="color:green;">
+                            <h:outputText value="Платеж проведен успешно! Индетификатор платежа в Онимe:  "/>
+                            <h:outputText value="#{contract.payment.paymentOnymaId}">
+                                <f:convertNumber pattern="#" />
+                            </h:outputText>
+            </p:outputLabel>
+
+
+            <p:outputLabel value="Новый платеж"
+                           rendered="#{contract.payment.status == 'NEW'}"
+                           style="color:blue;"/>
+            <p:outputLabel value="Ошбка транзакции! Платеж НЕ проведен! Попробуйте еще раз или обратитесь к админитратору."
+                           rendered="#{contract.payment.status == 'FAILED'}"
+                           style="color:red;"/>
+        </h:panelGrid>
+</composite:implementation>
+
+</html>

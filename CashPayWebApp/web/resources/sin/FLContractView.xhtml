@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:p="http://java.sun.com/jsf/html"
+        >
+
+<composite:interface>
+
+    <composite:attribute name="contract" type="java.lang.Object"/>
+
+
+</composite:interface>
+
+<composite:implementation>
+<p:outputLabel value="FL"/>
+    <h:panelGrid columns="2" >
+        <h:panelGrid columns="2" >
+            <h:outputText value="Баланс"/>
+            <h:outputText value="#{cc.attrs.contract.balance}">
+                <f:convertNumber pattern="#,###,##0.00"/>
+            </h:outputText>
+            <h:outputText value="Контактный телефон (моб.) (261.0)"/>
+            <h:outputText value="#{cc.attrs.contract.FLContract.mobilePhoneNumber}"/>
+            <h:outputText value="ФИО (250.0)"/>
+            <h:outputText value="#{cc.attrs.contract.FIO}"/>
+            <h:outputText value="Бумажный договор (номер) (306.0)"/>
+            <h:outputText value="#{cc.attrs.contract.FLContract.paperDogNumber}"/>
+            <h:outputText value="Фактический адрес (281.0)"/>
+            <h:outputText value="#{cc.attrs.contract.FLContract.factAddress}"/>
+            <h:outputText value="Общие группы ФЛ (331.0)"/>
+            <h:outputText value="#{cc.attrs.contract.FLContract.commonGroupFL}"/>
+            <h:outputText value="Группа (320.0)"/>
+            <h:outputText value="#{cc.attrs.contract.FLContract.FLContract.group}"/>
+        </h:panelGrid>
+    </h:panelGrid>
+</composite:implementation>
+
+</html>

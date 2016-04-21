@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+        >
+
+<composite:interface>
+
+
+
+    <composite:attribute name="indexer" type="java.lang.Object"/>
+    <composite:attribute name="manager" type="java.lang.Object"/>
+    <composite:attribute name="update" type="java.lang.String"/>
+
+
+
+
+</composite:interface>
+
+<composite:implementation>
+
+
+                <h:panelGrid columns="1" cellpadding="5">
+                    <p:outputLabel value="Поиск по номеру,адресу телефну и имени:"  for="ac" />
+                    <h:panelGrid columns="4" >
+                        <h:commandLink  style="margin-right:5px;" actionListener="#{cc.attrs.manager.clearTargetString}">
+                            <h:graphicImage library="images" name="cross1.png" width="20" height="20"/>
+                            <p:ajax update="ac" resetValues="true"  />
+                        </h:commandLink >
+                        <p:autoComplete id="ac" size="100" value="#{cc.attrs.manager.targetString}" completeMethod="#{cc.attrs.indexer.completeMethod}"
+                                        >
+                            <p:ajax event="blur" update="ac" />
+                            <p:ajax event="itemSelect"  />
+                        </p:autoComplete>
+
+                        <h:commandLink  style="margin-right:5px;" actionListener="#{contractManager.findContract}" >
+                            <h:graphicImage library="images" name="search1.png" width="40" height="40"/>
+                            <p:ajax update=":#{cc.attrs.update}" />
+                        </h:commandLink >
+                        <p:ajaxStatus id="startAjax">
+                            	                <f:facet name="start">
+                            	                    <h:graphicImage value="#{resource['images:ajaxloader.gif']}" width="40" height="40"></h:graphicImage>
+                            	                </f:facet>
+                        </p:ajaxStatus>
+
+                    </h:panelGrid>
+                </h:panelGrid>
+
+
+</composite:implementation>
+
+</html>

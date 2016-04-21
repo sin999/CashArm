@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:p="http://primefaces.org/ui"
+        >
+
+<composite:interface>
+
+    <composite:attribute name="paymentList" />
+
+
+</composite:interface>
+
+<composite:implementation>
+    <p:outputLabel value="Список платежей по договору"/>
+<p:scrollPanel style="width:750px;height:300px">
+    <p:dataTable var="payment" value="#{cc.attrs.paymentList}" >
+
+        <p:column headerText="Дата" style="width:15%;">
+            <h:outputText value="#{payment.txDate.time}" >
+                <f:convertDateTime pattern="dd.MM.yyyy HH:mm" />
+            </h:outputText>
+        </p:column>
+
+        <p:column headerText="Сумма" width="7%">
+            <h:outputText value="#{payment.txAmount} руб." >
+                <f:convertNumber pattern="#,###,##0.00"/>
+            </h:outputText>
+        </p:column>
+
+        <p:column headerText="Комментарий">
+            <h:outputText value="#{payment.comment}" />
+        </p:column>
+
+    </p:dataTable>
+</p:scrollPanel>
+</composite:implementation>
+
+</html>

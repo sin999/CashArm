@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:p="http://java.sun.com/jsf/html"
+        >
+
+<composite:interface>
+
+    <composite:attribute name="connectionList" />
+
+
+</composite:interface>
+
+<composite:implementation>
+    <p:dataTable var="connection"
+                 value="#{cc.attrs.connectionList}"
+                 rendered="#{cc.attrs.connectionList!=null}" >
+        <f:facet name="header">
+            Тарифы
+        </f:facet>
+
+        <p:column headerText="Ресурс">
+            <h:outputText value="#{connection.resource.name}" />
+        </p:column>
+
+        <p:column headerText="тариф">
+            <h:outputText value="#{connection.tariff.tmname}"
+                          rendered="#{connection.tariff!=null}"/>
+        </p:column>
+
+    </p:dataTable>
+</composite:implementation>
+
+</html>

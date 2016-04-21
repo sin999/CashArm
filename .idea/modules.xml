@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/CashArm.iml" filepath="$PROJECT_DIR$/CashArm.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CashPayWebApp/CashPayWebApp.iml" filepath="$PROJECT_DIR$/CashPayWebApp/CashPayWebApp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/OnymaGate/OnymaGate.iml" filepath="$PROJECT_DIR$/OnymaGate/OnymaGate.iml" />
+    </modules>
+  </component>
+</project>
+

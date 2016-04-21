@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<head>
+    <title></title>
+</head>
+<body>
+
+<div id="loginForm">
+    <h:panelGrid cellpadding="2" columns="2">
+        <h:outputLabel for="UserName" value="NUM"/>
+        <h:outputText id="UserName" value="#{authBean.contract.dogcode}"/>
+        <h:outputLabel for="UserName" value="DogAttributes"/>
+        <!--<h:outputText id="DogAttributes" value="#{authBean.attributes}"/>-->
+
+    </h:panelGrid >
+
+        <h:dataTable  value="#{authBean.attributeList}" rendered="true" var="someKey" id="producten">
+            <h:column>
+                <h:outputText value="#{someKey}"/>
+            </h:column>
+            <h:column>
+                <h:outputText value="#{authBean.attributeMap[someKey]}"/>
+            </h:column>
+
+        </h:dataTable>
+
+</div>
+
+</body>
+</html>

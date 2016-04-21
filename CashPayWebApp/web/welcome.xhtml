@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <f:facet name="first">
+        <meta http-equiv="X-UA-Compatible" content="EmulateIE8" />
+        <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+        <title>CashARM login page</title>
+    </f:facet>
+
+    <link type="text/css" rel="stylesheet" href="#{request.contextPath}/css/default.css" />
+    <link type="text/css" rel="stylesheet" href="#{request.contextPath}/css/syntaxhighlighter/syntaxhighlighter.css" />
+
+    <style type="text/css">
+        #loginForm{
+            position:absolute;
+            /*width:300px;*/
+            /*height:200px;*/
+            z-index:15;
+            top:50%;
+            left:50%;
+            margin:-100px 0 0 -150px;
+            background: #dbfff1;
+        }
+        .ui-layout-north {
+            z-index:20 !important;
+            overflow:visible !important;;
+        }
+
+        .ui-layout-north .ui-layout-unit-content {
+            overflow:visible !important;
+        }
+        /*body {*/
+        /*font-size: 0% !important;*/
+
+        /*}*/
+        .outgo{
+            background-color: #fff1fa;
+            color: #bf223f;
+            background-image:none;
+        }
+
+        .income{
+            background-color: #edfffd;
+            color: #029f0f;
+            background-image:none;
+        }
+    </style>
+</h:head>
+<body>
+<h:form>
+    <p:growl id="msgs" showDetail="true" />
+    <p:outputLabel value="Simple:" for="acSimple" />
+    <p:autoComplete id="acSimple" value="#{contractFinder.target}" completeMethod="#{contractFinder.completeMethod}"
+            converter="#{contractSearchConverter}"/>
+
+
+
+</h:form>
+</body>
+</html>

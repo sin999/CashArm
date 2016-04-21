@@ -1,0 +1,21 @@
+<component name="libraryTable">
+  <library name="OnymaApiLibs">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/jstl-1.1.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/javax.faces-2.2.1.jar!/" />
+      <root url="jar://D:/Users/Admin/Documents/javaRep/onyma/activation.jar!/" />
+      <root url="jar://D:/Users/Admin/Documents/javaRep/onyma/axis.jar!/" />
+      <root url="jar://D:/Users/Admin/Documents/javaRep/onyma/commons-discovery.jar!/" />
+      <root url="jar://D:/Users/Admin/Documents/javaRep/onyma/commons-logging.jar!/" />
+      <root url="jar://D:/Users/Admin/Documents/javaRep/onyma/jaxrpc.jar!/" />
+      <root url="jar://D:/Users/Admin/Documents/javaRep/onyma/junit.jar!/" />
+      <root url="jar://D:/Users/Admin/Documents/javaRep/onyma/mail.jar!/" />
+      <root url="jar://D:/Users/Admin/Documents/javaRep/onyma/OnymaApi.jar!/" />
+      <root url="jar://D:/Users/Admin/Documents/javaRep/onyma/OnymaApi_orig.jar!/" />
+      <root url="jar://D:/Users/Admin/Documents/javaRep/onyma/saaj.jar!/" />
+      <root url="jar://D:/Users/Admin/Documents/javaRep/onyma/wsdl.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

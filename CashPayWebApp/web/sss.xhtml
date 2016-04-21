@@ -1,0 +1,4 @@
+<p:outputLabel value="Pojo:" for="themePojo" />
+<p:autoComplete id="themePojo" value="#{autoCompleteView.theme1}" completeMethod="#{autoCompleteView.completeTheme}"
+                var="theme" itemLabel="#{theme.displayName}" itemValue="#{theme}" converter="themeConverter" forceSelection="true" />
+ 

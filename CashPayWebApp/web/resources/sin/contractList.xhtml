@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:sin="http://java.sun.com/jsf/composite/sin" >
+
+<composite:interface>
+
+    <composite:attribute name="contractList" />
+
+
+</composite:interface>
+
+<composite:implementation>
+    <p:dataTable var="contract"
+                 id="paymentDialog"
+                 value="#{cc.attrs.contractList}"
+                 rendered="#{cc.attrs.contractList!=null}" >
+        <f:facet name="header">
+            Найденые договоры
+        </f:facet>
+
+        <p:column headerText="Номер ">
+            <h:outputText value="#{contract.dogcode}" />
+        </p:column>
+
+        <p:column headerText="ФИО">
+            <h:outputText value="#{contract.agentName}"/>
+        </p:column>
+        <p:column headerText="Адрес">
+            <h:outputText value="#{contract.agentAddress}"/>
+        </p:column>
+
+        <p:column headerText="Баланс">
+            <h:outputText value="#{contract.balance}"/>
+        </p:column>
+        <p:column headerText="Действие">
+            <p:panelGrid columns="3">
+                <p:commandLink  style="margin-right:5px;" onclick="PF('Payment_#{contract.dogid}').show();">
+                    <h:graphicImage library="images" name="cash_register.png" width="30" height="30"/>
+                </p:commandLink >
+
+                <p:commandLink  type="" style="margin-right:5px;" onclick="PF('Info_#{contract.dogid}').show();">
+                    <h:graphicImage library="images" name="info.png" width="30" height="30"/>
+                </p:commandLink >
+
+                <h:commandLink  style="margin-right:5px;"   actionListener="#{contract.renewContract}">
+                    <h:graphicImage library="images" name="refresh.png" width="30" height="30"/>
+                    <p:ajax  update="paymentDialog" resetValues="true"  />
+                </h:commandLink >
+
+
+
+
+
+                <p:dialog header="Платеж для договора #{contract.dogcode} (#{contract.agentName})"
+                          widgetVar="Payment_#{contract.dogid}"
+                          minHeight="40"
+                          width="800"
+                          appendToBody="false">
+                    <p:ajax event="close"
+                            update="paymentDialog"
+                            listener="#{contract.commitPayment()}" />
+                    <sin:paymentDialogue contract="#{contract}"/>
+                </p:dialog>
+                <p:dialog header="Информация для договора #{contract.dogcode} (#{contract.agentName})"
+                          widgetVar="Info_#{contract.dogid}"
+                          minHeight="40"
+                          width="800"
+                          appendToBody="false">
+                    <sin:contractView contract="#{contract}"/>
+                </p:dialog>
+            </p:panelGrid>
+        </p:column>
+
+    </p:dataTable>
+</composite:implementation>
+
+</html>
